@@ -1,0 +1,3 @@
+requests
+urlib3
+bs4
