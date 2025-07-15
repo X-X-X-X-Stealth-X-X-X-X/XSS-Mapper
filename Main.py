@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse, parse_qs
 import os
-
+# Built by Infiltrator, github : X-X-X-X-Stealth-X-X-X-X
 xss_params = set()
 visited = set()
 params_found = set()
