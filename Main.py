@@ -18,12 +18,11 @@ def extract_params_from_url(url):
     qs = parse_qs(parsed.query)
     output = []
 
-    # Query params like ?id=1
     if qs:
         for k in qs.keys():
             output.append(f"{parsed.scheme}://{parsed.netloc}{parsed.path}?{k}=<INJECT>")
 
-    # Fragment params like #email=xyz
+
     if parsed.fragment:
         frag = parsed.fragment
         if '=' in frag:
@@ -43,12 +42,10 @@ def extract_params_from_url(url):
 def extract_parameters(url):
     parsed = urlparse(url)
 
-    # Query parameters
     query_params = parse_qs(parsed.query)
     for param in query_params:
         xss_params.add(param)
 
-    # Fragment parameters
     if parsed.fragment:
         frag = parsed.fragment
         if '=' in frag:
@@ -123,7 +120,7 @@ def is_same_domain(url, base_url):
 def save_results():
     if not os.path.exists("xss_spider"):
         os.makedirs("xss_spider")
-    name = input("📁 Enter a name for this scan (e.g., 'my_scan'): ").strip()
+    name = input(" Enter a name for this scan (e.g., 'my_scan'): ").strip()
     folder = f"xss_spider/{name}"
     os.makedirs(folder, exist_ok=True)
 
@@ -137,9 +134,9 @@ def save_results():
 
 
 if __name__ == "__main__":
-    start_url = input("🌍 Enter target URL (https://example.com): ").strip()
-    print(f"\n🕷️ Starting deep XSS parameter crawl on: {start_url}")
+    start_url = input(" Enter target URL (https://example.com): ").strip()
+    print(f"\n🕷 Starting deep XSS parameter crawl on: {start_url}")
     crawl(start_url, start_url)
     save_results()
-    print("\n✅  Now test these with your payloads 💉💻")
+    print("\n  Now test these with your payloads ")
 
